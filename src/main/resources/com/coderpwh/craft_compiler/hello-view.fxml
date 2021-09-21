@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="vbox" alignment="CENTER" prefHeight="532.0" prefWidth="572.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.coderpwh.craft_compiler.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <Text fill="#f50f23" strokeType="OUTSIDE" strokeWidth="0.0" text="coderpwh">
+      <font>
+         <Font size="19.0" />
+      </font>
+   </Text>
+    <Button minWidth="500" onAction="#onHelloButtonClick" text="generate">
+      <graphic>
+         <TextField fx:id="text" minWidth="420" />
+      </graphic></Button>
+   <Button mnemonicParsing="false" onAction="#openFile" text="open file to generate" />
+   <ListView fx:id="mylistview" prefHeight="200.0" prefWidth="200.0" />
+</VBox>
