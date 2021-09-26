@@ -17,5 +17,5 @@ public enum DfaState {
         StringLiteral,
         StringBegin,
         KU,
-        Include
+        Include,Notes
     }

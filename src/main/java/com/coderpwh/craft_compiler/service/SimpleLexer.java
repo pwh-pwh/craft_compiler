@@ -1,14 +1,12 @@
 package com.coderpwh.craft_compiler.service;
 
-import com.coderpwh.craft_compiler.entity.DfaState;
-import com.coderpwh.craft_compiler.entity.SimpleToken;
-import com.coderpwh.craft_compiler.entity.Token;
-import com.coderpwh.craft_compiler.entity.TokenType;
+import com.coderpwh.craft_compiler.entity.*;
 
 import java.io.CharArrayReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import static com.coderpwh.craft_compiler.utils.CharUtil.*;
@@ -196,6 +194,22 @@ public class SimpleLexer {
                             tokenText.append(ch);
                         }
                         break;
+                    case Slash:
+                        if(ch =='/') {
+                            token.setType(TokenType.Notes);
+                            state = DfaState.Notes;
+                            tokenText.append(ch);
+                        }else {
+                            state = initToken(ch);
+                        }
+                        break;
+                    case Notes:
+                        if (isAlpha(ch)){
+                            tokenText.append(ch);
+                        } else {
+                            state = initToken(ch);
+                        }
+                        break;
                     case GE:
                     case LE:
                     case EQ:
@@ -204,7 +218,6 @@ public class SimpleLexer {
                     case Plus:
                     case Minus:
                     case Star:
-                    case Slash:
                     case SemiColon:
                     case LeftParen:
                     case Include:
@@ -233,35 +246,10 @@ public class SimpleLexer {
 
     }
     public void isKeyWork(SimpleToken token,String str) {
-        switch (str) {
-            case "while":
-                token.setType(TokenType.While);
-                break;
-            case "if":
-                token.setType(TokenType.If);
-                break;
-            case "int":
-                token.setType(TokenType.Int);
-                break;
-            case "cin":
-                token.setType(TokenType.Cin);
-                break;
-            case "cout":
-                token.setType(TokenType.Cout);
-                break;
-
-            case "else":
-                token.setType(TokenType.Else);
-                break;
-
-            case "include":
-                token.setType(TokenType.Include);
-                break;
-            case "main":
-                token.setType(TokenType.Main);
-                break;
-            default:
-                break;
+        Map<String, TokenType> map = KeyWorkMap.map;
+        TokenType tokenType = map.get(str);
+        if(tokenType!=null) {
+            token.setType(tokenType);
         }
     }
 

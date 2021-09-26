@@ -39,5 +39,6 @@ public enum TokenType {
     IntLiteral,     //整型字面量
     StringLiteral,   //字符串字面量
     StringBegin,
-    KU              //库文件
+    KU,              //库文件
+    Notes
 }
