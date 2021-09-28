@@ -55,10 +55,21 @@ public class HelloController {
         try {
             FileReader fileReader = new FileReader(selectedFile);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            StringBuffer stringBuffer = new StringBuffer();
+
             bufferedReader.lines().forEach(e-> {
+                stringBuffer.append(e);
+
+            });
+            SimpleTokenReader tokenize = lexer.tokenize(stringBuffer.toString());
+            tokenList.addAll(tokenize.getTokenList());
+
+/*            bufferedReader.lines().forEach(e-> {
                 SimpleTokenReader tokenize = lexer.tokenize(e);
                 tokenList.addAll(tokenize.getTokenList());
-            });
+            });*/
+
             ObservableList<Token> tokens = FXCollections.observableArrayList(tokenList);
             mylistview.setEditable(false);
             mylistview.setItems(tokens);

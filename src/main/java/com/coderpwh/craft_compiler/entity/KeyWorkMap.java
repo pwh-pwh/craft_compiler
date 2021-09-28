@@ -14,5 +14,10 @@ public class KeyWorkMap {
         map.put("else",TokenType.Else);
         map.put("include",TokenType.Include);
         map.put("main",TokenType.Main);
+        map.put("float",TokenType.Float);
+        map.put("char",TokenType.Char);
+        map.put("bool",TokenType.Bool);
+        map.put("true",TokenType.TRUE);
+        map.put("false",TokenType.FALSE);
     }
 }

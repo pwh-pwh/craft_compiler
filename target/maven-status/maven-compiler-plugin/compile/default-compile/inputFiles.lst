@@ -1,0 +1,14 @@
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/entity/SimpleToken.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/entity/KeyWorkMap.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/Main.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/entity/Token.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/entity/DfaState.java
+/root/公共/demo/craft_compiler/src/main/java/module-info.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/entity/TokenType.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/HelloController.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/HelloApplication.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/service/TokenReader.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/service/MyLexerTest.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/service/SimpleLexer.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/service/SimpleTokenReader.java
+/root/公共/demo/craft_compiler/src/main/java/com/coderpwh/craft_compiler/utils/CharUtil.java

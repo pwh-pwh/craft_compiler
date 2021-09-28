@@ -31,8 +31,13 @@ public enum TokenType {
     Include,
     Main,
     Jing,
-
+    Character,
     Int,
+    Float,
+    Char,
+    Bool,
+    TRUE,
+    FALSE,
 
     Identifier,     //标识符
 
@@ -40,5 +45,7 @@ public enum TokenType {
     StringLiteral,   //字符串字面量
     StringBegin,
     KU,              //库文件
-    Notes
+    Notes,
+    MULCM,   //多行注释
+    SignedNum
 }

@@ -17,5 +17,16 @@ public enum DfaState {
         StringLiteral,
         StringBegin,
         KU,
-        Include,Notes
-    }
+        Include,Notes,
+        MULCM,   //多行注释
+        MULCM_B,
+        MULCM_M,
+        Charset,
+        SignedNum,
+        SignedNum_b,
+        SignedNum_d,
+        SignedNum_e,
+        SignedNum_es
+
+
+        }

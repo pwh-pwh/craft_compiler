@@ -90,6 +90,10 @@ public class SimpleLexer {
             newState = DfaState.StringBegin;
             token.setType(TokenType.StringBegin);
             tokenText.append(ch);
+        } else if (ch == '\''){
+            newState = DfaState.Charset;
+            token.setType(TokenType.Character);
+            tokenText.append(ch);
         }
         else {
             newState = DfaState.Initial; // skip all unknown patterns
@@ -194,12 +198,34 @@ public class SimpleLexer {
                             tokenText.append(ch);
                         }
                         break;
+                    case MULCM_M:
+                        if(ch == '*') {
+                            tokenText.append(ch);
+                        }else if(ch == '/') {
+                            tokenText.append(ch);
+                            state = DfaState.MULCM;
+                        }else {
+                            tokenText.append(ch);
+                            state = DfaState.MULCM_B;
+                        }
+                        break;
+                    case MULCM_B:
+                        tokenText.append(ch);
+                        if(ch == '*') {
+                            state = DfaState.MULCM_M;
+                        }
+                        break;
                     case Slash:
                         if(ch =='/') {
                             token.setType(TokenType.Notes);
                             state = DfaState.Notes;
                             tokenText.append(ch);
-                        }else {
+                        } else if(ch == '*') {
+                            token.setType(TokenType.MULCM);
+                            state = DfaState.MULCM_B;
+                            tokenText.append(ch);
+                        }
+                        else {
                             state = initToken(ch);
                         }
                         break;
@@ -210,26 +236,86 @@ public class SimpleLexer {
                             state = initToken(ch);
                         }
                         break;
+                    case Charset:
+                        tokenText.append(ch);
+                        if(ch == '\''){
+                            state = DfaState.Initial;
+                        }
+                        break;
+
+                    case Plus:
+                        if (isDigit(ch)){
+                            tokenText.append(ch);
+                            state = DfaState.SignedNum_b;
+                            token.setType(TokenType.SignedNum);
+                        }else{
+                            state = initToken(ch);
+                        }
+                        break;
+                    case Minus:
+                        if (isDigit(ch)){
+                            tokenText.append(ch);
+                            state = DfaState.SignedNum_b;
+                            token.setType(TokenType.SignedNum);
+                        }else{
+                            state = initToken(ch);
+                        }
+                        break;
+                    case SignedNum_b:
+                        if(isDigit(ch)){
+                            tokenText.append(ch);
+                        }else if(ch == '.'){
+                            tokenText.append(ch);
+                            state = DfaState.SignedNum_d;
+                        }else {
+                            state = initToken(ch);
+                        }
+                        break;
+                    case SignedNum_d:
+                        if(isDigit(ch)){
+                            tokenText.append(ch);
+                        } else if(ch == 'e'){
+                            tokenText.append(ch);
+                            state = DfaState.SignedNum_es;
+                        }else {
+                            state = initToken(ch);
+                        }
+                        break;
+                    case SignedNum_es:
+                        tokenText.append(ch);
+                        state = DfaState.SignedNum_e;
+                        break;
+                    case SignedNum_e:
+                        if(isDigit(ch)) {
+                            tokenText.append(ch);
+                        }else {
+                            state = initToken(ch);
+                        }
+                        break;
                     case GE:
                     case LE:
                     case EQ:
                     case IN:
                     case OUT:
-                    case Plus:
-                    case Minus:
                     case Star:
                     case SemiColon:
                     case LeftParen:
                     case Include:
                     case Jing:
                     case StringLiteral:
+                    case MULCM:
                     case RightParen:
                         state = initToken(ch);
                         break;
                     case IntLiteral:
                         if(isDigit(ch)) {
                             tokenText.append(ch);
-                        }else {
+                        } else if(ch == '.') {
+                            tokenText.append(ch);
+                            token.setType(TokenType.SignedNum);
+                            state = DfaState.SignedNum_d;
+                        }
+                        else {
                             state = initToken(ch);
                         }
                         break;
